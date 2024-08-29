@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RpgApi.Models;
+using RpgApi.Models.Enuns;
 
 namespace RpgApi.Controllers
 {
@@ -41,5 +42,34 @@ namespace RpgApi.Controllers
         {
             return Ok(personagens.FirstOrDefault(pe => pe.Id == id));
         }
+
+        [HttpPost]
+
+        public IActionResult AddPersonagem(Personagem novoPersonagem)
+        {
+            personagens.Add(novoPersonagem);
+            return Ok(personagens);
+        }
+
+        [HttpDelete("{id}")]
+
+        public IActionResult Delete(int id)
+        {
+            personagens.RemoveAll(pers => pers.Id == id);
+
+            return Ok(personagens);
+        }
+
+        [HttpGet("GetByEnum/{enumId}")]
+
+        public IActionResult GetByEnum(int enumId)
+        {
+            ClasseEnum enumDigitado = (ClasseEnum)enumId;
+
+            List<Personagem> listaBusca = personagens.FindAll(p => p.Classe == enumDigitado);
+            
+            return Ok(listaBusca);
+        }
+
     }
 }
