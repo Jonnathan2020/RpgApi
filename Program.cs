@@ -1,4 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using RpgApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//buscar banco de dados 
+builder.Services.AddDbContext<DataContext>
+(
+    options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
+    }
+);
+
+
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
