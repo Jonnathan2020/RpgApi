@@ -11,6 +11,6 @@ namespace RpgApi.Models
         public string Nome {get;set;} = ""; //Atributo da classe Nome = nome do objeto
         public int Dano {get;set; } //Atributo da classe que é considerado um dano que será causado dentro do game
         public Personagem? Personagem { get; set; }
-        public int PersongemId { get; set; }
+        public int PersonagemId { get; set; }
     }
 }
